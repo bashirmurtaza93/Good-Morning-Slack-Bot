@@ -1,8 +1,8 @@
-#Good Morning Py Bot
+# Good Morning Py Bot
 
 A bot that will message you or your team good morning at a specific time you set it to.
 
-###Getting Started
+### Getting Started
 
 Download a copy of this build. Everything you will need to configure will be inside the goodmorning.py file.
 
