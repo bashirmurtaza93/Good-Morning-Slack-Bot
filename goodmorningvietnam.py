@@ -54,16 +54,17 @@ def goodMorningEveryone():
     user_list = slack_client.api_call('users.list').get('members')
     username_list = []
     for user in user_list:
-        if user.get('name') != 'goodmorningvietnam':
+        if user.get('name') != 'BOT NAME':
             username_list.append(user.get('name'))
 
     channel_list = slack_client.api_call('channels.list').get('channels')
     for channel in channel_list:
-        if channel.get('name') == 'general':
+        if channel.get('name') == 'CHANNEL NAME HERE':
             general_channel_id = channel.get('id')
     str_username_list = ', '.join(username_list)
-    response = 'Hello ' + str_username_list + ' and ....'
-    slack_client.api_call("chat.postMessage", channel=general_channel_id, text=response, attachments='[{"title":"test","image_url":"https://media.giphy.com/media/BYG86QlGgaHvy/giphy.gif"}]', as_user=True)
+    #SET MESSAGES AND ATTTACHMENTS IN THE FOLLOWING 2 LINES#
+    response = 'Hello ' + str_username_list
+    slack_client.api_call("chat.postMessage", channel=general_channel_id, text=response, attachments='[{"title":"test","image_url":"Image goes here"}]', as_user=True)
 
 
 
@@ -71,11 +72,14 @@ def goodMorningEveryone():
 if __name__ == "__main__":
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     if slack_client.rtm_connect():
-        print("goodmorningvietnam connected and running")
-        if time.strftime("%H:%M") == '14:00':
-            goodMorningEveryone()
+        print("goodmorning bot connected and running")
+
         # print(time.strftime("%H:%M"))
         while True:
+            #***INSERT YOUR OWN TIME HERE***#
+            if time.strftime("%H:%M") == 'TIME GOES HERE':
+                goodMorningEveryone()
+                time.sleep(61)
 
             command, channel = parse_slack_output(slack_client.rtm_read())
             if command and channel:
